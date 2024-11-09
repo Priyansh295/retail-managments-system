@@ -1,0 +1,90 @@
+// Suppliers.scss
+.part_container {
+    margin: auto;
+    width: 100%;
+    align-items: center;
+    .part-table {
+        margin: auto;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            thead {
+                background-color: paleturquoise;
+            }
+            th, td {
+                padding: 15px;
+                text-align: left;
+            }
+            tbody {
+                tr:nth-child(odd) {
+                background-color: #ffffff;  // Set the background color for odd rows
+                }
+                tr:nth-child(even) {
+                background-color: #efffff;  // Set the background color for even rows
+                }
+            }
+        }
+        .add-button {
+            background-color: rgb(0, 170, 255);
+            color: white;
+            border-radius: 7px;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: large;
+            width: 200px;
+            padding: 10px 10px 10px 10px;
+            cursor: pointer;
+            &:hover {
+                background-color: #40e0c0;
+                color: black;
+            }
+        }
+        .part-buttons {
+            display: flex;
+            padding: 10px 10px 10px 10px;
+            align-items: center;
+            margin: auto;
+        }
+        .update-button {
+            background-color: #40e0d0;
+            color: white;
+            border-radius: 7px;
+            align-items: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: auto;
+            margin-bottom: auto;
+            padding: 10px 10px 10px 10px;
+            cursor: pointer;
+            &:hover {
+                background-color: #40e0c0;
+                color: black;
+            }
+        }
+        .delete-button {
+            padding: 10px 10px 10px 10px;
+            background-color: #cd821f;
+            color: white;
+            border: none;
+            align-items: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: auto;
+            margin-bottom: auto;
+            border-radius: 7px;
+            cursor: pointer;
+            &:hover {
+                background-color: #df0000;
+                color: black;
+            }
+        }
+    }
+}

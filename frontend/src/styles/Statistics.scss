@@ -1,0 +1,98 @@
+.statistic_container {
+    display: flex;
+    flex-direction: column;
+    // margin-left: 10px;
+    // margin-right: 10px;
+    width: 100%;
+    min-height: 100vh;
+    // margin-bottom: 30px;
+    // margin-top: 30px;
+    margin-bottom: 0px;
+    h1 {
+        background-color: rgb(0, 21, 47);
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: white;
+        padding: 20px;
+    }
+    .division {
+        background-color: rgb(0, 0, 0);
+        margin: 0px;
+        padding: 5px;
+    }
+    .options {
+        display: flex;
+        width: 100%;
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            // min-height: 100vh;
+            // width: 100%;
+            align-items: center;
+            // margin:auto;
+            padding: 20px 20px 20px 20px;
+            // width: 260px;
+            // margin: auto;
+            // border-radius: 10px;
+        }
+        .populate-stats {
+            align-items: center;
+            margin-right: 0px;
+            margin-left: 0px;
+            width: 100%;
+            // display: flex;
+            padding: 20px 20px 20px 20px;
+            .buttons {
+                display: flex;
+                flex-direction: row;
+                background-color: rgb(7, 37, 61);
+                max-height: fit-content;
+                width: 80%;
+                border-radius: 20px;
+                margin-bottom: 10px;
+                min-height: 0px;
+                margin-right: auto;
+                margin-left: auto;
+                button {
+                    background-color: rgb(38, 196, 196);
+                    border-radius: 10px;
+                    margin-right: 10px;
+                }
+            }
+            h2 {
+                margin: auto;
+                text-align: center;
+                padding: 20px;
+            }
+        }
+    }
+    .options {
+        display: flex;
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            min-width: 170px;
+            align-items: center;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            padding: 20px 20px 20px 20px;
+            background-color: rgb(12, 7, 47);
+            button {
+                // margin-left: 20px;
+                margin-top: 10px;
+                // margin-right: 20px;
+                margin-right: 0px;
+                margin-left: 0px;
+                // border-radius: 8px;
+                background-color: rgb(21, 173, 207);
+                cursor: pointer;
+                &:hover {
+                    background-color: #00e5ff;
+                    color: black;
+                }
+            }
+        }
+    }
+}

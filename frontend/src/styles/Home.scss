@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+$primary-color: #3498db;
+$secondary-color: #2c3e50;
+$text-color: #333;
+$light-bg: #f4f4f4;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.home {
+  
+
+  .hero {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      margin-top: 20px;
+      font-size:x-large;
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      @include flex-center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+
+      h2 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .cta-button {
+        background-color: $primary-color;
+        color: white;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+
+  .features {
+    background-color: $light-bg;
+    padding: 4rem 0;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+
+      .feature-card {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+
+        .feature-icon {
+          background-color: $primary-color;
+          color: white;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          @include flex-center;
+          margin: 0 auto 1rem;
+          font-size: 1.5rem;
+        }
+
+        h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
+  .featured-vehicles {
+    padding: 4rem 0;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+
+      .vehicle-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 8px 8px 0 0;
+        }
+
+        .vehicle-info {
+          padding: 1.5rem;
+
+          h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+          }
+
+          p {
+            color: $primary-color;
+            font-weight: 600;
+            margin-bottom: 1rem;
+          }
+
+          .learn-more-button {
+            background-color: $secondary-color;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: darken($secondary-color, 10%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cta {
+    background-color: $primary-color;
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      background-color: white;
+      color: $primary-color;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken(white, 10%);
+      }
+    }
+  }
+
+  footer {
+    background-color: $secondary-color;
+    color: white;
+    padding: 4rem 0 2rem;
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+
+      .footer-section {
+        h3 {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            margin-bottom: 0.5rem;
+
+            a {
+              
+              color: #ccc;
+              text-decoration: none;
+              transition: color 0.3s ease;
+
+              &:hover {
+                color: white;
+              }
+            }
+          }
+        }
+
+        .newsletter-form {
+          display: flex;
+          margin-top: 1rem;
+
+          input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 20px 0 0 20px;
+          }
+
+          button {
+            background-color: $primary-color;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: darken($primary-color, 10%);
+            }
+          }
+        }
+      }
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    header {
+      .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .header-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    .hero {
+      .hero-content {
+        h2 {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .features, .featured-vehicles {
+      .feature-grid, .vehicle-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

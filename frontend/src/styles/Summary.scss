@@ -1,0 +1,141 @@
+.Summary {
+    min-height: 90vh;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    h1 {
+        background-color: inherit;
+        color: rgb(0, 0, 0);
+        font-size: xx-large;
+    }
+    .SummaryOrders:hover {
+        transform: scale(1.01);
+      }
+    .SummaryOrders{
+        margin: auto;
+        align-items: center;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+        border: none;
+        padding: 20px;
+        .StatLabel {
+            font-weight: bold;
+            font-family: 'Lucida Sans';
+            font-size: large;
+            color: rgb(255, 255, 255);
+        }
+        .StatValue {
+            background-color: rgb(255, 255, 255);
+            padding: 5px 5px;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 30px;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: x-large;
+            font-family: 'Lucida Sans';
+            align-items: center;
+        }
+        .OrderDetails {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .det {
+                margin-bottom: 10px;
+            }
+            .SubStatLabel {
+                font-size: medium;
+                font-weight: lighter;
+                font-family: 'Lucida Sans';
+            }
+            .SubStatValue {
+                font-weight: bold;
+                font-family: 'Lucida Sans';
+                margin-left: 10px;
+                background-color: white;
+                padding: 5px 5px;
+                border-radius: 10px;
+            }
+        }
+    }
+    .SummaryStatItem:hover {
+        transform: scale(1.01);
+      }
+    .SummaryStats {
+        display: flex;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+        max-width: 80%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+        background-color: rgb(27, 0, 47);
+        border-radius: 10px;
+        align-items: center;
+        margin: auto;
+    }
+    .SummaryStatItem {
+        min-width: 200px;
+        min-height: 100px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+        margin: auto;
+        align-items: center;
+        .StatLabel {
+            font-weight: bold;
+            font-family: 'Lucida Sans';
+            font-size: large;
+            color: white;
+        }
+        .StatValue {
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+            padding: 5px 5px;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 30px;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: x-large;
+            font-family: 'Lucida Sans';
+            align-items: center;
+        }
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background-color: rgb(0, 94, 63);
+        margin: 20px;
+        border-radius: 20px;
+    }
+    #Prod {
+        background-color: rgb(119, 0, 65);
+    }
+    #Client {
+        background-color: rgb(0, 184, 184);
+    }
+    #SupOrd {
+        background-color: rgb(0, 184, 101);
+    }
+    #Supplier {
+        background-color: rgb(183, 175, 28);
+
+    }
+    #Emp {
+        background-color: rgb(0, 52, 184);
+    }
+    #Ord {
+        background-color: rgb(184, 0, 156);
+        width: 30%;
+    }
+
+}

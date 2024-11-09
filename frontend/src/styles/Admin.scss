@@ -1,0 +1,55 @@
+.admin_container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    .heading {
+        background-color: rgb(0, 21, 47);
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: white;
+        padding: 20px;
+    }
+    .division {
+        background-color: rgb(0, 0, 0);
+        margin: 0px;
+        padding: 5px;
+    }
+    .options {
+        display: flex;
+        // flex-direction: column;
+        // width: 90%;
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            min-width: 170px;
+            align-items: center;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            padding: 20px 20px 20px 20px;
+            background-color: rgb(0, 21, 47);
+            button {
+                margin-left: 20px;
+                margin-top: 10px;
+                margin-right: 20px;
+                border-radius: 8px;
+                background-color: rgb(21, 173, 207);
+                cursor: pointer;
+                &:hover {
+                    background-color: #00e5ff;
+                    color: black;
+                }
+            }
+        }
+        .populate {
+            align-items: center;
+            margin-right: 10px;
+            margin-left: 20px;
+            margin-bottom: 50px;
+            display: flex;
+            padding: 20px 20px 20px 20px;
+            width:100%;
+        }
+    }
+}

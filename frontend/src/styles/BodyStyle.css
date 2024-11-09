@@ -1,0 +1,59 @@
+body_styles.css
+
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 14px;
+    width: 80%
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+input,
+textarea,
+button {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    color: #ff0000;
+    margin-top: 10px;
+}
+
+span {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+span a {
+color: #007bff;
+text-decoration: none;
+}
+
+span a:hover {
+text-decoration: underline;
+}
