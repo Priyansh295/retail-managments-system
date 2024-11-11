@@ -313,6 +313,7 @@ VALUES
     INSERT INTO Admin
     VALUES
     ('admin', '$2a$10$ajLYr46aHBjWhpcBV/Ng4O/2n/Anx0H2QPH09cPjPCGNqxHOEQanC');
+    ('abc', '$2a$10$95K.TTl.Ma.m4D2yyOJEBOZELaa6coS1vjjXu.xYa95Hi8SvNSHlG');
 
 
 -- -------------------------------------------------------------------------------------------------------------------
