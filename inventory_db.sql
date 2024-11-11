@@ -106,9 +106,9 @@ CREATE TABLE SUPPLIER(
 -- CREATE TABLE STORAGE
 CREATE TABLE STORAGE(
    Store_id VARCHAR(5),                 -- Unique identifier for storage
-   Part_id VARCHAR(5),                  -- Part stored in the storage
+   Product_id VARCHAR(5),                  -- Part stored in the storage
    Quantity INT,                        -- Quantity of parts in storage
-   Rack_no INT,                         -- Rack number in the storage
+   Park_no INT,                         -- Rack number in the storage
    Block_no VARCHAR(3),                 -- Block number in the storage
    Threshold INT,                       -- Threshold quantity for restocking
    PRIMARY KEY(Store_id)                -- Primary key is Store_id
@@ -174,9 +174,9 @@ ADD CONSTRAINT fk_part_supplier FOREIGN KEY(Part_ID)
 REFERENCES Part(Part_ID) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- ALTER TABLE Storage
-ALTER TABLE Storage
-ADD CONSTRAINT fk_store_part FOREIGN KEY(Part_ID)
-REFERENCES Part(Part_ID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE STORAGE
+ADD CONSTRAINT fk_store_product FOREIGN KEY (Product_ID)
+REFERENCES Product(Product_ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 -- Create JOIN Table Order_Parts To Track Aggregate quantity of each Part In an Order
@@ -254,18 +254,18 @@ VALUES
    ('P0010', 'P3', 4);
 
 
-INSERT INTO STORAGE (Store_id, Part_id, Quantity, Rack_no, Block_no, Threshold)
+INSERT INTO STORAGE (Store_id, Product_id, Quantity, Park_no, Block_no, Threshold)
 VALUES
-('S1', 'P1', 5, 1, 'A', 3),
-('S2', 'P2', 4, 2, 'B', 2),
-('S3', 'P3', 6, 3, 'C', 3),
-('S4', 'P4', 7, 4, 'D', 3),
-('S5', 'P5', 3, 5, 'E', 2),
-('S6', 'P6', 2, 6, 'F', 1),
-('S7', 'P7', 8, 7, 'G', 4),
-('S8', 'P8', 9, 8, 'H', 4),
-('S9', 'P9', 10, 9, 'I', 5),
-('S10', 'P10', 4, 10, 'J', 5);
+('S1', 'P0001', 5, 1, 'A', 3),
+('S2', 'P0002', 4, 2, 'B', 2),
+('S3', 'P0003', 6, 3, 'C', 3),
+('S4', 'P0004', 7, 4, 'D', 3),
+('S5', 'P0005', 3, 5, 'E', 2),
+('S6', 'P0006', 2, 6, 'F', 1),
+('S7', 'P0007', 8, 7, 'G', 4),
+('S8', 'P0008', 9, 8, 'H', 4),
+('S9', 'P0009', 10, 9, 'I', 5),
+('S10', 'P0010', 4, 10, 'J', 5);
 
 
 

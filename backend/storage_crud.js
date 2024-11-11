@@ -48,7 +48,7 @@ export const add_store = (req, res) => {
       const q = "INSERT INTO Storage VALUES (?)"
       const v = [
           req.body.Store_id,
-          req.body.Product_ID,
+          req.body.Product_id,
           req.body.Quantity,
           req.body.Park_no,
           req.body.Block_no,

@@ -85,7 +85,7 @@ const Storage = () => {
             {stores.map((store) => (
               <tr key={store.Store_id}>
                 <td>{store.Store_id}</td>
-                <td>{store.Product_ID}</td>
+                <td>{store.Product_id}</td>
                 <td>{store.Quantity}</td>
                 <td>{store.Park_no}</td>
                 <td>{store.Block_no}</td>
