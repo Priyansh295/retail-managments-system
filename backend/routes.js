@@ -3,7 +3,7 @@ import db from './db.js';
 import fileUpload from 'express-fileupload';
 import { login_admin, login_client, logout_admin, logout_client, register, login_employee, logout_employee } from "./auth_controller.js";
 import { add_supplier, delete_supplier, fetch_suppliers, update_supplier } from './supplier_crud.js';
-import { add_employee, delete_employee, fetch_employees, update_employee } from './employees_crud.js';
+import { add_employee, delete_employee, fetch_employees, update_employee, get_employee, get_employee_orders  } from './employees_crud.js';
 import { add_product, delete_product, get_product_parts } from './products_crud.js';
 import { add_store, delete_store, fetch_stores, update_store} from './storage_crud.js';
 import { fetch_orders,fetch_order_line, addEmployee } from './orders.js';
@@ -170,6 +170,10 @@ router.post('/employees/add', add_employee);
 
 // update employee
 router.put('/employees/:id', update_employee);
+
+router.get("/api/employees/:id", get_employee); // Fetch details for a single employee
+
+router.get("/api/employees/:id/orders", get_employee_orders);
 
 // Fetch suppliers
 router.get('/suppliers', fetch_suppliers);

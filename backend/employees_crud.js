@@ -74,3 +74,39 @@ export const delete_employee = (req, res) => {
       return res.json("Employee Deleted Successfully.")
     });
 }
+
+export const get_employee = (req, res) => {
+  const employee_id = req.params.id; // Extract Employee ID from request parameters
+  const query = "SELECT * FROM Employee WHERE Employee_id = ?";
+
+  db.query(query, [employee_id], (err, data) => {
+    if (err) {
+      console.error("Error fetching employee details:", err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+    if (data.length === 0) {
+      return res.status(404).json({ error: "Employee not found" });
+    }
+    res.status(200).json(data[0]); // Send back the first (and only) row
+  });
+};
+
+export const get_employee_orders = (req, res) => {
+  const employee_id = req.params.id; // Extract Employee_ID from URL params
+  const query = `
+    SELECT Order_ID, Client_ID, Total_Payment, Shipment_Date, Status 
+    FROM Orders 
+    WHERE Employee_ID = ?;
+  `;
+
+  db.query(query, [employee_id], (err, data) => {
+    if (err) {
+      console.error("Error fetching employee orders:", err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+    if (data.length === 0) {
+      return res.status(404).json({ message: "No orders found for this employee" });
+    }
+    res.status(200).json(data);
+  });
+};

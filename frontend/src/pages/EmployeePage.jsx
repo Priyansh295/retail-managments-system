@@ -1,184 +1,162 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
-import '../styles/EmployeePage.scss';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import "../styles/EmployeePage.scss";
+import { FaUserCircle, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { MdTrendingUp, MdDeliveryDining } from "react-icons/md";
 
-const EmployeePage = () => {
+const EmployeePage = ({ employeeId = "E0004" }) => {
   const [employeeInfo, setEmployeeInfo] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [msg, setMsg] = useState("");
+  const [err, setErr] = useState("");
 
   // Hardcoded performance data
   const performanceData = [
-    { month: "January", count: 10 },
-    { month: "February", count: 15 },
-    { month: "March", count: 12 },
-    { month: "April", count: 20 },
-    { month: "May", count: 18 },
-    { month: "June", count: 25 },
-    { month: "July", count: 30 },
-    { month: "August", count: 28 },
-    { month: "September", count: 22 },
-    { month: "October", count: 35 },
-    { month: "November", count: 40 },
-    { month: "December", count: 45 },
+    { month: "January", count: 40 },
+    { month: "February", count: 60 },
+    { month: "March", count: 50 },
+    { month: "April", count: 70 },
+    { month: "May", count: 65 },
+    { month: "June", count: 55 },
   ];
 
-  // Hardcoded deliveries
-  const deliveries = [
-    {
-      Order_ID: "ORD001",
-      Client_Name: "John Doe",
-      Delivery_Address: "123 Main Street, Cityville",
-      Status: "In Transit",
-    },
-    {
-      Order_ID: "ORD002",
-      Client_Name: "Jane Smith",
-      Delivery_Address: "456 Elm Street, Townsville",
-      Status: "Delivered",
-    },
-    {
-      Order_ID: "ORD003",
-      Client_Name: "Tom Johnson",
-      Delivery_Address: "789 Oak Avenue, Villagetown",
-      Status: "Pending",
-    },
-  ];
+  // Fetch Employee Profile
+  const fetchEmployeeInfo = async () => {
+    try {
+      setErr("");
+      const response = await axios.get(`http://localhost:8800/api/employees/${employeeId}`);
+      setEmployeeInfo(response.data);
+      setMsg("Employee data fetched successfully!");
+    } catch (error) {
+      console.error("Error fetching employee info:", error);
+      setErr("Failed to fetch employee details. Please try again.");
+    }
+  };
+
+  // Fetch Orders Assigned to Employee
+  const fetchEmployeeOrders = async () => {
+    try {
+      setErr("");
+      const response = await axios.get(`http://localhost:8800/api/employees/${employeeId}/orders`);
+      setOrders(response.data);
+      setMsg("Orders fetched successfully!");
+    } catch (error) {
+      console.error("Error fetching employee orders:", error);
+      setErr("Failed to fetch employee orders. Please try again.");
+    }
+  };
 
   useEffect(() => {
-    // Replace `E0001` with the actual employee ID you want to fetch
-    const fetchEmployeeInfo = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8800/api/employees/E0001" // Replace with actual backend endpoint
-        );
-        setEmployeeInfo(response.data);
-      } catch (error) {
-        console.error("Error fetching employee info:", error);
-      }
-    };
-
     fetchEmployeeInfo();
-  }, []);
+    fetchEmployeeOrders();
+  }, [employeeId]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="employee-page">
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">Employee Dashboard</h1>
-        </div>
+      <header className="employee-header">
+        <h1>Employee Dashboard</h1>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="employee-main">
         {/* Employee Profile Section */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Profile</h2>
+        <div className="card profile-card">
+          <h2>
+            <FaUserCircle /> Employee Profile
+          </h2>
           {employeeInfo ? (
-            <div className="bg-white p-6 rounded-lg shadow">
+            <>
               <p>
-                <strong>ID:</strong> {employeeInfo.Employee_id}
+                <FaUserCircle />
+                <strong>Employee ID:</strong> {employeeInfo.Employee_id}
               </p>
               <p>
-                <strong>Name:</strong> {employeeInfo.Employee_name}
-              </p>
-              <p>
+                <FaEnvelope />
                 <strong>Email:</strong> {employeeInfo.Email}
               </p>
               <p>
+                <FaPhone />
                 <strong>Phone:</strong> {employeeInfo.Phone_no}
               </p>
               <p>
+                <FaMapMarkerAlt />
                 <strong>Address:</strong> {employeeInfo.Address}
               </p>
-            </div>
+            </>
           ) : (
             <p>Loading employee details...</p>
           )}
-        </section>
+        </div>
 
         {/* Performance Chart Section */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            Monthly Performance
+        <div className="card chart-card">
+          <h2>
+            <MdTrendingUp /> Delivery Performance
           </h2>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <ResponsiveContainer width="100%" height={300}>
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height="100%">
               <LineChart data={performanceData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="count"
-                  stroke="#8884d8"
-                  activeDot={{ r: 8 }}
-                />
+                <Line type="monotone" dataKey="count" stroke="#4caf50" activeDot={{ r: 8 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
-        </section>
+        </div>
 
-        {/* Delivery List Section */}
-        <section>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            Pending Deliveries
+        {/* Orders Section */}
+        <div className="card deliveries-card">
+          <h2>
+            <MdDeliveryDining /> Assigned Orders
           </h2>
-          <div className="bg-white p-6 rounded-lg shadow">
-            {deliveries.length > 0 ? (
-              <table className="min-w-full table-auto">
-                <thead>
-                  <tr className="bg-gray-200">
-                    <th className="px-4 py-2">Order ID</th>
-                    <th className="px-4 py-2">Client</th>
-                    <th className="px-4 py-2">Address</th>
-                    <th className="px-4 py-2">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {deliveries.map((delivery, index) => (
-                    <tr
-                      key={index}
-                      className={`${
-                        index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                      }`}
-                    >
-                      <td className="px-4 py-2">{delivery.Order_ID}</td>
-                      <td className="px-4 py-2">{delivery.Client_Name}</td>
-                      <td className="px-4 py-2">{delivery.Delivery_Address}</td>
-                      <td className="px-4 py-2">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Client ID</th>
+                <th>Total Payment</th>
+                <th>Shipment Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+                {orders.length > 0 ? (
+                  orders.map((order) => (
+                    <tr key={order.Order_ID}>
+                      <td>{order.Order_ID}</td>
+                      <td>{order.Client_ID}</td>
+                      <td>${order.Total_Payment ? parseFloat(order.Total_Payment).toFixed(2) : "N/A"}</td>
+                      <td>{order.Shipment_Date ? new Date(order.Shipment_Date).toLocaleDateString() : "N/A"}</td>
+                      <td>
                         <span
-                          className={`px-2 py-1 rounded-full text-white ${
-                            delivery.Status === "Delivered"
-                              ? "bg-green-500"
-                              : delivery.Status === "In Transit"
-                              ? "bg-yellow-500"
-                              : "bg-blue-500"
+                          className={`status-badge ${
+                            order.Status === "In Progress"
+                              ? "status-pending"
+                              : order.Status === "Shipped"
+                              ? "status-shipped"
+                              : order.Status === "Complete"
+                              ? "status-complete"
+                              : "status-cancelled"
                           }`}
                         >
-                          {delivery.Status}
+                          {order.Status}
                         </span>
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No pending deliveries</p>
-            )}
-          </div>
-        </section>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="5">No orders assigned to this employee.</td>
+                  </tr>
+                )}
+              </tbody>
+              
+          </table>
+        </div>
       </main>
     </div>
   );
