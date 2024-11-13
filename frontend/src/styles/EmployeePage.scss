@@ -1,0 +1,147 @@
+.employee-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+
+  .employee-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #eaeaea;
+
+      h1 {
+          font-size: 28px;
+          color: #2c3e50;
+      }
+
+      .logout-button {
+          background-color: #e74c3c;
+          color: white;
+          border: none;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+              background-color: #c0392b;
+          }
+
+          svg {
+              margin-right: 5px;
+          }
+      }
+  }
+
+  .employee-main {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      h2 {
+          font-size: 22px;
+          color: #2c3e50;
+          margin-bottom: 20px;
+      }
+
+      .profile-card {
+          background-color: #f9f9f9;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+          p {
+              margin-bottom: 10px;
+              font-size: 16px;
+
+              strong {
+                  color: #2c3e50;
+              }
+          }
+      }
+
+      .performance-chart {
+          background-color: #ffffff;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+          .chart-container {
+              height: 300px;
+          }
+      }
+
+      .deliveries {
+          background-color: #ffffff;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+          table {
+              width: 100%;
+              border-collapse: collapse;
+
+              th,
+              td {
+                  text-align: left;
+                  padding: 12px;
+                  border: 1px solid #eaeaea;
+              }
+
+              th {
+                  background-color: #f4f4f4;
+                  color: #2c3e50;
+                  font-weight: bold;
+              }
+
+              tbody tr:nth-child(even) {
+                  background-color: #f9f9f9;
+              }
+
+              tbody tr:hover {
+                  background-color: #f1f1f1;
+              }
+
+              .status-badge {
+                  display: inline-block;
+                  padding: 5px 10px;
+                  border-radius: 12px;
+                  font-size: 12px;
+                  color: white;
+                  font-weight: bold;
+              }
+
+              .status-delivered {
+                  background-color: #28a745;
+              }
+
+              .status-in-transit {
+                  background-color: #ffc107;
+              }
+
+              .status-pending {
+                  background-color: #007bff;
+              }
+          }
+
+          .no-deliveries {
+              text-align: center;
+              color: #7f8c8d;
+              font-style: italic;
+              margin-top: 20px;
+          }
+      }
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-page {
+      .employee-main {
+          flex-direction: column;
+      }
+  }
+}

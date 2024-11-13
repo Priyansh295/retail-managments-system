@@ -1,7 +1,7 @@
 import express from 'express';
 import db from './db.js';
 import fileUpload from 'express-fileupload';
-import { login_admin, login_client, logout_admin, logout_client, register } from "./auth_controller.js";
+import { login_admin, login_client, logout_admin, logout_client, register, login_employee, logout_employee } from "./auth_controller.js";
 import { add_supplier, delete_supplier, fetch_suppliers, update_supplier } from './supplier_crud.js';
 import { add_employee, delete_employee, fetch_employees, update_employee } from './employees_crud.js';
 import { add_product, delete_product, get_product_parts } from './products_crud.js';
@@ -143,7 +143,8 @@ router.post("/login_client", login_client)
 router.post("/login_admin", login_admin)
 router.post("/logout_client", logout_client)
 router.post("/logout_admin", logout_admin)
-
+router.post("/login_employee", login_employee);
+router.post("/logout_employee", logout_employee);
 // Fetch suppliers
 router.get('/suppliers', fetch_suppliers);
 
@@ -212,26 +213,26 @@ router.put('/employees/:id', update_employee);
 router.post('/products/order_lines', async (req, res) => {
   try {
     const orderLineItem = req.body;
-
+    
     // Check if the required data is provided
     if (!orderLineItem || typeof orderLineItem !== 'object') {
       return res.status(400).json({ error: 'Invalid input data' });
     }
-
+    
     const { Order_ID, Product_ID, Status, Quantity } = orderLineItem;
     console.log(Order_ID)
     // Validate required fields
     if (!Order_ID || !Product_ID || !Status || !Quantity) {
       return res.status(400).json({ error: 'Missing required fields in order line data' });
     }
-
+    
     const addOrderLineQuery = `
-      INSERT INTO Order_Line (Order_ID, Product_ID, Status, Quantity)
-      VALUES (?, ?, ?, ?)
+    INSERT INTO Order_Line (Order_ID, Product_ID, Status, Quantity)
+    VALUES (?, ?, ?, ?)
     `;
-
+    
     const addOrderLineValues = [Order_ID, Product_ID, Status, Quantity];
-
+    
     db.query(addOrderLineQuery, addOrderLineValues, (err, result) => {
       if (err) {
         console.error('Error adding order line:', err);
@@ -248,20 +249,20 @@ router.post('/products/order_lines', async (req, res) => {
 });
 
 router.post('/procedure',(req,res)=>{
-      const Order_ID = req.body[0];
-      console.log(req.body)
-      console.log(Order_ID);
-      const callStoredProcedureQuery = 'CALL ProcessOrderParts(?)';
-      const orderIdParameter = [Order_ID];
-      console.log(orderIdParameter)
-      db.query(callStoredProcedureQuery, orderIdParameter, (err, result) => {
-        console.log("IN procedure")
-        if (err) {
-          console.error('Error calling stored procedure:', err);
-          return res.status(500).json({ error: 'Internal server error' });
-        }
-        console.log('Stored procedure called successfully');
-    })
+  const Order_ID = req.body[0];
+  console.log(req.body)
+  console.log(Order_ID);
+  const callStoredProcedureQuery = 'CALL ProcessOrderParts(?)';
+  const orderIdParameter = [Order_ID];
+  console.log(orderIdParameter)
+  db.query(callStoredProcedureQuery, orderIdParameter, (err, result) => {
+    console.log("IN procedure")
+    if (err) {
+      console.error('Error calling stored procedure:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    console.log('Stored procedure called successfully');
+  })
 })
 
 router.post('/products/order', (req, res) => {
@@ -271,15 +272,15 @@ router.post('/products/order', (req, res) => {
     Status
   } = req.body;
   const insertOrderQuery =
-    'INSERT INTO Orders (Order_ID, Client_ID, Total_Payment,Status, Order_Placement_Date) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP())';
-
+  'INSERT INTO Orders (Order_ID, Client_ID, Total_Payment,Status, Order_Placement_Date) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP())';
+  
   const orderValues = [
     Order_id,
     client_id,
     Total_payment,
     Status
   ];
-
+  
   db.query(insertOrderQuery, orderValues, (err, result) => {
     if (err) {
       console.error('Error inserting order:', err);
@@ -312,7 +313,7 @@ router.get('/order-details/:orderId', (req, res) => {
       console.error('Error fetching order details:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
-
+    
     // Fetch product details for each order line
     const productDetails = [];
     orderLines.forEach((orderLine) => {
@@ -340,7 +341,7 @@ router.get('/order-history/:orderId', (req, res) => {
       console.error('Error fetching order details:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
-
+    
     // Fetch product details for each order line
     const productDetails = [];
     orderLines.forEach((orderLine) => {
@@ -372,7 +373,7 @@ router.put('/supplier-orders/update-status/:id', update_supplier_order_status);
 router.get('/timestamp', (req, res) => {
   const query = 'SELECT CONVERT_TZ(CURRENT_TIMESTAMP(), \'+00:00\', \'+05:30\') AS local_timestamp;';
   // Replace '+00:00' and '+05:30' with the UTC offset and local offset of your timezone
-
+  
   db.query(query, [], (err, data) => {
     if (err) {
       console.error('Error fetching Timestamp:', err);
@@ -390,7 +391,7 @@ router.put('/supplier-orders/update-status/:id', update_supplier_order_status);
 router.get('/timestamp', (req, res) => {
   const query = 'SELECT CONVERT_TZ(CURRENT_TIMESTAMP(), \'+00:00\', \'+05:30\') AS local_timestamp;';
   // Replace '+00:00' and '+05:30' with the UTC offset and local offset of your timezone
-
+  
   db.query(query, [], (err, data) => {
     if (err) {
       console.error('Error fetching Timestamp:', err);
@@ -411,12 +412,12 @@ router.put('/orders-deliver/:orderId', (req, res) => {
       console.error('Error updating order status:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
-
+    
     // Check if any rows were affected
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: 'Order not found' });
     }
-
+    
     // Send success response
     res.status(200).json({ message: 'Order status updated successfully' });
   });
@@ -429,6 +430,7 @@ router.post('/client/change-password',update_password);
 router.get('/admin/:id',fetch_admin);
 router.post('/admin/change-password',update_admin_password);
 router.post('/admin/add',add_admin);
+router.post('/admin/add', add_admin);
 
 //Statistic
 router.get('/products/categories',fetch_stats_category);

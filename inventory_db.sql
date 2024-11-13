@@ -69,7 +69,8 @@ CREATE TABLE EMPLOYEE(
    Employee_name VARCHAR(25),           -- Name of the employee
    Phone_no DECIMAL(10,0),              -- Employee's phone number
    Email Text,                          -- Employee's email
-   Address  VARCHAR(50),                -- Employee's address
+   Address  VARCHAR(50), 
+   Password_emp TEXT,                -- Client's password               -- Employee's address
    PRIMARY KEY(Employee_Id)             -- Primary key is Employee_Id
 );
 
@@ -283,18 +284,18 @@ VALUES
 ('S0010', 'P10', 'Trusted Partners', 'supplier10@email.com', 9990001111, '2223 Maple Avenue', 550, 110.50, 1);
 
 
-INSERT INTO EMPLOYEE (Employee_Id, Employee_Name, Phone_no, Email, Address)
+INSERT INTO EMPLOYEE (Employee_Id, Employee_Name, Phone_no, Email, Address, Password_emp)
 VALUES
-('E0001', 'Alice Johnson', 1234567890, 'alice@example.com', '123 Main Street'),
-('E0002', 'Bob Thompson', 0987654321, 'bob@example.com', '456 Elm Street'),
-('E0003', 'Eva Rodriguez', 3334445555, 'eva@example.com', '789 Oak Street'),
-('E0004', 'Maxwell Parker', 2225556666, 'maxwell@example.com', '1011 Maple Avenue'),
-('E0005', 'Olivia Carter', 6667778888, 'olivia@example.com', '1213 Pine Street'),
-('E0006', 'Liam Foster', 5554443333, 'liam@example.com', '1415 Beach Avenue'),
-('E0007', 'Sophia Bennett', 4443332222, 'sophia@example.com', '1617 Park Avenue'),
-('E0008', 'Daniel Nguyen', 7778881111, 'daniel@example.com', '1819 Elm Street'),
-('E0009', 'Isabella Kim', 8889990000, 'isabella@example.com', '2021 Oak Street'),
-('E0010', 'Jackson Patel', 9990001111, 'jackson@example.com', '2223 Maple Avenue');
+('E0001', 'Alice Johnson', 1234567890, 'alice@example.com', '123 Main Street', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0002', 'Bob Thompson', 0987654321, 'bob@example.com', '456 Elm Street', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0003', 'Eva Rodriguez', 3334445555, 'eva@example.com', '789 Oak Street', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0004', 'Maxwell Parker', 2225556666, 'maxwell@example.com', '1011 Maple Avenue', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0005', 'Olivia Carter', 6667778888, 'olivia@example.com', '1213 Pine Street', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0006', 'Liam Foster', 5554443333, 'liam@example.com', '1415 Beach Avenue', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0007', 'Sophia Bennett', 4443332222, 'sophia@example.com', '1617 Park Avenue', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0008', 'Daniel Nguyen', 7778881111, 'daniel@example.com', '1819 Elm Street', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0009', 'Isabella Kim', 8889990000, 'isabella@example.com', '2021 Oak Street', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO'),
+('E0010', 'Jackson Patel', 9990001111, 'jackson@example.com', '2223 Maple Avenue', '$2a$10$vOKSZFU0vjGNW8pOF9/Ise4DCH5xb/mVnj3hERi/kwx6dmHB1ojNO');
 
 
 INSERT INTO CLIENT (Client_ID, Client_Name, Email, phone_no, City, PINCODE, Building, Floor_no, password_client)

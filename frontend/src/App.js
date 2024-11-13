@@ -20,11 +20,12 @@ import Order from "./pages/OrderConfirmation"
 import Admin from "./pages/Admin";
 import NavbarAdmin from "./components/NavbarAdmin";
 import NavbarClient from "./components/NavbarClient";
-import { ProtectedRouteAdmin, ProtectedRouteClient } from "./pages/ProtectedRoute";
+import { ProtectedRouteAdmin, ProtectedRouteClient, ProtectedRouteEmployee} from "./pages/ProtectedRoute";
 import Statistics from "./pages/Statistics";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import ClientUpdate from "./pages/ClientUpdate"
 import AddAdmin from "./pages/AddAdmin";
+import EmployeePage from "./pages/EmployeePage";
 import "./App.scss"
 import "./styles/BodyStyle.css"
 
@@ -52,6 +53,15 @@ const LayoutAdmin = () => {
         <NavbarAdmin/>
         <Outlet />
       </ProtectedRouteAdmin>
+  );
+};
+
+const LayoutEmployee = () => {
+  return (
+      <ProtectedRouteEmployee>
+        <NavbarClient/>
+        <Outlet />
+      </ProtectedRouteEmployee>
   );
 };
 
@@ -133,6 +143,16 @@ const router = createBrowserRouter([
             element:<AddAdmin/>
           }
         ]
+    },
+    {
+      path: "/",
+      element: <LayoutEmployee />, // Employee layout
+      children: [
+        {
+          path: "/employee",
+          element: <EmployeePage />, // Employee dashboard
+        },
+      ],
     },
 ])
 

@@ -9,7 +9,7 @@
   .login-box {
     display: flex;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -21,7 +21,8 @@
       padding: 40px;
       display: flex;
       flex-direction: column;
-      transition: all 0.5s ease; // Transition for resizing and color change
+      transition: all 0.5s ease;
+      cursor: pointer;
 
       h2 {
         font-size: 2em;
@@ -95,19 +96,48 @@
     }
 
     .panel.active {
-      flex: 3; // Adjust flex to give more space to the active panel
+      flex: 2;
       background-color: #333;
       color: white;
+
+      h2 {
+        color: white;
+      }
+
+      label {
+        color: #ddd;
+      }
+
+      .register {
+        color: #ddd;
+
+        a {
+          color: #a67bd5;
+        }
+      }
     }
   }
 }
 
-@media (max-width: 768px) {
-  .login-content {
+@media (max-width: 1024px) {
+  .login-box {
     flex-direction: column;
+    max-width: 400px;
 
-    .login-image {
-      display: none;
+    .panel {
+      width: 100%;
+    }
+
+    .panel.active {
+      flex: 1;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    .panel {
+      padding: 20px;
     }
   }
 }
