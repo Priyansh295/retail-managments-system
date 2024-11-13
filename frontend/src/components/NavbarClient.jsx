@@ -60,7 +60,7 @@ const NavbarClient = () => {
           <h1>Welcome</h1>
           <div className="links">
             <Link className="link login-link" to="/login">
-              Login
+              Logout
             </Link>
           </div>
         </div>
