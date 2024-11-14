@@ -7,18 +7,20 @@
 
   .employee-header {
     margin-bottom: 30px;
+    text-align: center;
 
     h1 {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: bold;
       color: #2c3e50;
+      margin: 0;
     }
   }
 
   .employee-main {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 
     .card {
       background-color: #ffffff;
@@ -30,7 +32,7 @@
       gap: 15px;
 
       h2 {
-        font-size: 20px;
+        font-size: 22px;
         color: #2c3e50;
         display: flex;
         align-items: center;
@@ -41,6 +43,7 @@
         }
       }
     }
+
     .profile-card {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -63,63 +66,68 @@
         }
       }
     }
+
     .chart-card {
       .chart-container {
         height: 300px;
       }
     }
 
-    .deliveries-card {
+    .orders-card {
       table {
         width: 100%;
         border-collapse: collapse;
+        font-size: 14px;
 
-        th {
-          text-align: left;
-          padding: 10px;
+        thead {
           background-color: #f8f9fa;
-          text-transform: uppercase;
-          color: #495057;
-          font-weight: bold;
-          font-size: 14px;
+
+          th {
+            text-align: left;
+            padding: 12px;
+            text-transform: uppercase;
+            color: #495057;
+            font-weight: bold;
+          }
         }
 
-        td {
-          text-align: left;
-          padding: 12px;
-          border-bottom: 1px solid #eaeaea;
-          font-size: 14px;
-          color: #2c3e50;
-        }
+        tbody {
+          td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eaeaea;
+            color: #2c3e50;
+          }
 
-        tr:hover {
-          background-color: #f1f1f1;
-        }
+          tr:hover {
+            background-color: #f1f1f1;
+          }
 
-        .status-badge {
-          display: inline-block;
-          padding: 5px 10px;
-          border-radius: 12px;
-          font-size: 12px;
-          font-weight: bold;
-          color: white;
+          .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+          }
+
+          .status-pending {
+            background-color: #ffc107;
+          }
+
+          .status-shipped {
+            background-color: #17a2b8;
+          }
+
+          .status-complete {
+            background-color: #28a745;
+          }
+
+          .status-cancelled {
+            background-color: #dc3545;
+          }
         }
-        
-        .status-pending {
-          background-color: #ffc107;
-        }
-        
-        .status-shipped {
-          background-color: #17a2b8;
-        }
-        
-        .status-complete {
-          background-color: #28a745;
-        }
-        
-        .status-cancelled {
-          background-color: #dc3545;
-        }        
       }
     }
   }
@@ -128,9 +136,17 @@
     .employee-main {
       .profile-card,
       .chart-card,
-      .deliveries-card {
+      .orders-card {
         padding: 15px;
       }
+    }
+
+    .profile-card {
+      grid-template-columns: 1fr;
+    }
+
+    h1 {
+      font-size: 28px;
     }
   }
 }
